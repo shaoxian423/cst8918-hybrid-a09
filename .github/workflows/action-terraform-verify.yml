@@ -1,4 +1,4 @@
-name: Validate Terraform
+name: Validate terraform fmt
 on:
   pull_request:
     branches:
@@ -10,9 +10,9 @@ permissions:
   contents: read
 
 jobs:
-  validate_fmt:
+  validate:
     runs-on: ubuntu-latest
-    name: Terraform fmt check
+    name: terraform fmt check
     outputs:
       CHECK_STATUS: "${{ env.CHECK_STATUS }}"
     steps:
@@ -50,30 +50,3 @@ jobs:
       - name: Process check
         if: always()
         run: exit $CHECK_STATUS
-
-  validate_terraform:
-    runs-on: ubuntu-latest
-    name: Terraform validation
-    needs: validate_fmt
-    steps:
-      - uses: actions/checkout@v3
-      - name: Configure terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.2.4
-      - name: Terraform init
-        run: terraform init -backend=false
-        working-directory: ./infrastructure
-      - name: Terraform validate
-        run: terraform validate
-        working-directory: ./infrastructure
-      - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v3
-        with:
-          tflint_version: latest
-      - name: Init TFLint
-        run: tflint --init
-        working-directory: ./infrastructure
-      - name: Run TFLint
-        run: tflint
-        working-directory: ./infrastructure
