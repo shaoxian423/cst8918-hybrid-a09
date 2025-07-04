@@ -38,7 +38,7 @@ jobs:
             echo "Checking terraform fmt on ${changed_file}..."
 
             if [[ $changed_file == *.tf ]]; then
-              terraform fmt -check $changed_file
+              terraform fmt -check "${{ github.workspace }}/$changed_file"
               FMT_STATUS=$(echo $?)
 
               if [[ $FMT_STATUS -ne 0 ]]; then
@@ -50,3 +50,20 @@ jobs:
       - name: Process check
         if: always()
         run: exit $CHECK_STATUS
+
+  terraform-validate:
+    runs-on: ubuntu-latest
+    name: terraform validate
+    needs: validate
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.4
+      - name: Initialize terraform
+        run: terraform init -backend=false
+        working-directory: ./infrastructure
+      - name: Validate terraform configuration
+        run: terraform validate
+        working-directory: ./infrastructure
