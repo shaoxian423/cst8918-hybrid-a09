@@ -29,8 +29,7 @@ resource "azurerm_storage_account" "example" {
 }
 
 # Generate a random string for unique storage account name
-resource "random_string" "suffix" 
-{
+resource "random_string" "suffix" {
   length  = 8
   special = false
   upper   = false

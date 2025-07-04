@@ -128,11 +128,13 @@ jobs:
    ```bash
    git commit -m "test commit" --no-verify
    ```
-![Make error](./images/12.png)
+![Make error](./images/13.png)
    
 3. Push the branch and create a Pull Request.
+![Make error](./images/131.png)
 4. ✅ **Expected:** GitHub Actions fails on the broken Terraform code.
 5. Fix the errors and push again.
+![After Fix error](./images/14.png)
 6. ✅ **Expected:** GitHub Actions passes.
 
 ---
