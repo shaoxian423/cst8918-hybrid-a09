@@ -75,8 +75,8 @@ chmod +x .husky/pre-commit
 
 ### File: `.github/workflows/action-terraform-verify.yml`
 
+![Push yml](./images/10.png)
 This workflow runs on pull requests to the `main` or `master` branches and performs:
-
 - `terraform fmt -check` on changed `.tf` files
 - **Terraform validation**
 
@@ -123,10 +123,12 @@ jobs:
 ## ✅ Testing the Workflow
 
 1. Add a Terraform syntax or formatting error.
+![Make error](./images/11.png)
 2. Bypass the pre-commit hook:
    ```bash
    git commit -m "test commit" --no-verify
    ```
+![Make error](./images/12.png)
    
 3. Push the branch and create a Pull Request.
 4. ✅ **Expected:** GitHub Actions fails on the broken Terraform code.
