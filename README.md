@@ -62,9 +62,12 @@ chmod +x .husky/pre-commit
 ![Configure Pre-Commit2](./images/5.png)
 ### 5. Test Pre-Commit Hook
 - Intentionally break your Terraform formatting or syntax.
+![Configure Pre-Commit2](./images/6.png)
+![Configure Pre-Commit2](./images/7.png)
 - Try committing — the hook should block the commit.
+![Configure Pre-Commit2](./images/8.png)
 - Fix the errors, commit again — it should succeed.
-
+![Configure Pre-Commit2](./images/9.png)
 
 ---
 
@@ -124,6 +127,7 @@ jobs:
    ```bash
    git commit -m "test commit" --no-verify
    ```
+   
 3. Push the branch and create a Pull Request.
 4. ✅ **Expected:** GitHub Actions fails on the broken Terraform code.
 5. Fix the errors and push again.
