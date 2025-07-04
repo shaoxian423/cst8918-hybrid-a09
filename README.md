@@ -59,15 +59,15 @@ echo "tflint" >> .husky/pre-commit
 chmod +x .husky/pre-commit
 ```
 ![Configure Pre-Commit](./images/4.png)
-![Configure Pre-Commit2](./images/5.png)
+![Chomd](./images/5.png)
 ### 5. Test Pre-Commit Hook
 - Intentionally break your Terraform formatting or syntax.
-![Configure Pre-Commit2](./images/6.png)
-![Configure Pre-Commit2](./images/7.png)
+![syntax error](./images/6.png)
+![Check Error](./images/7.png)
 - Try committing — the hook should block the commit.
-![Configure Pre-Commit2](./images/8.png)
+![Hook block commit](./images/8.png)
 - Fix the errors, commit again — it should succeed.
-![Configure Pre-Commit2](./images/9.png)
+![Hook Allow Commit](./images/9.png)
 
 ---
 
